@@ -1,10 +1,11 @@
-# Android Experiments
 
-<div style="align:center">
+
+<div align=center>
+    <h1>Android Experiments</h1>
     <img src = "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png">
 </div>
 
-##About
+## About
 
 This repository is  my playground for trying out various  App architectures , libraries and design 
 patterns.  

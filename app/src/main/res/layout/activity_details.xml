@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.details.DetailsActivity"
+    tools:ignore="HardcodedText">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_rect_curve_8_solid_light_fffef2"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="ContentDescription">
+
+                <ImageView
+                    android:id="@+id/iv_pokemon"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_circle_white_fff"
+                    android:elevation="2dp"
+                    tools:src="@android:drawable/ic_menu_camera"
+                    android:scaleType="fitXY"
+                    android:padding="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    tools:background="#eee"
+                    tools:text="Pikachu" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab_regular"
+
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="About"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Pokedex id"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Height"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Weight"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Total Exp"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_margin="4dp"
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Type"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Weakness"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Evolutions"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="HP"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Attack"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Defence"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+
+
+                android:background="@drawable/bg_rect_curve_8_solid_white_fff"
+                android:gravity="start|center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="Speed"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:gravity="start|center"
+                    android:padding="8dp"
+                    android:text="v"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+
+        </GridLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-# Architectures2020
+# Android Experiments
 
 <div style="align:center">
     <img src = "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png">

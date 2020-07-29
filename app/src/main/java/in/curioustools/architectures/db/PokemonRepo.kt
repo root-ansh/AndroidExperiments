@@ -7,11 +7,13 @@ import `in`.curioustools.architectures.utils.Logito
 import `in`.curioustools.architectures.utils.threading.AppExecutors
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import java.util.concurrent.Callable
 
-class PokemonRepo(ctx: Context) {
+class PokemonRepo(ctx: Context, private val executors: AppExecutors) {
     private val dao = PokeDb.getInstance(ctx.applicationContext).notesDbAccessDao
-    private val executors: AppExecutors = AppExecutors.getSingletonInstance()
     private val logito = Logito(TAG = "PokemonRepo>>")
 
     fun insertPokeMons(vararg pokemon: Pokemon) {
@@ -32,10 +34,9 @@ class PokemonRepo(ctx: Context) {
 
     }
 
-    fun getAllPokemonsLive(): LiveData<List<Pokemon>>? {
+    //fun getPagedPokemonLiveListFactory() = dao.getAllPokemonsPageListFactory()
 
-        return dao.getAllPokemonsLive()
-    }
+    fun getPagedPokemonLiveListFactory() =dao.getAllPokemonsPageListFactory()
 
     fun refreshCache(recievedPokemons: List<Pokemon>) {
         executors.singleThreadExecutorService.execute {

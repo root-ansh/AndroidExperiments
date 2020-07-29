@@ -57,10 +57,13 @@ dependencies {
     //https://developer.android.com/jetpack/androidx/versions
     def lifecycle_version = "2.2.0"
     def room_version = "2.2.5"
+    def paging_version = "2.1.2"
 
     def retrofit_version = "2.9.0"
     def okhttp_login_interceptor_version = "4.8.0"
     def glide_ver = "4.11.0"
+
+
 
 
     //lifecycles(livedata/vm)
@@ -71,6 +74,10 @@ dependencies {
     //room
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+    //paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version" // For java use paging-runtime(no ktx)
+
 
 
 

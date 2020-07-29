@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import kotlinx.android.synthetic.main.activity_dash_board.*
 
 class DashBoardActivity : AppCompatActivity() {
@@ -24,7 +25,7 @@ class DashBoardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dash_board)
 
         //initUi
-        adp = DashboardAdapter(listOf(), object : MyRvItemClickListener<Pokemon> {
+        adp = DashboardAdapter(layoutInflater, object : MyRvItemClickListener<Pokemon> {
             override fun onItemClick(clickedItem: Pokemon) {
                 DetailsActivity.open(this@DashBoardActivity, clickedItem.indexID)
             }
@@ -59,12 +60,13 @@ class DashBoardActivity : AppCompatActivity() {
     private fun startListeningToChanges() {
         val liveData = viewModel.getLiveListOfPokemons()
 
-        val pokemonListObserver: Observer<List<Pokemon>?> = Observer<List<Pokemon>?> { list ->
-            if (list != null) adp.setAdapterData(list)
-            else logito.e("livedata sent a null list: $list")
+        val pokemonListObserver: Observer<PagedList<Pokemon>> = Observer<PagedList<Pokemon>> { list ->
+//            if (list != null) adp.setAdapterData(list)
+//            else logito.e("livedata sent a null list: $list")
+            adp.submitList(list)
         }
 
-        liveData?.observe(this,pokemonListObserver)
+        liveData.observe(this,pokemonListObserver)
 
     }
 

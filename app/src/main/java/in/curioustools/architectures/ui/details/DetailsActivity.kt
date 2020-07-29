@@ -5,6 +5,7 @@ import `in`.curioustools.architectures.db.PokemonRepo
 import `in`.curioustools.architectures.models.Pokemon
 import `in`.curioustools.architectures.utils.GlideAnimatedLoader
 import `in`.curioustools.architectures.utils.Logito
+import `in`.curioustools.architectures.utils.threading.AppExecutors
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -37,7 +38,7 @@ class DetailsActivity : AppCompatActivity() {
         val id:String = intent?.getStringExtra(KEY_DATA)?:"error"
         logito.e("id = $id ")
 
-        val repo = PokemonRepo(this)
+        val repo = PokemonRepo(this, AppExecutors.getSingletonInstance())
 
         pokemon = repo.getPokemonByIndex(id)?: Pokemon.getDefaultPokemon()
 

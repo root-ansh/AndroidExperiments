@@ -26,10 +26,7 @@ class AppExecutors private constructor(val singleThreadExecutorService: Executor
             if (INSTANCE == null) {
                 synchronized(LOCK) {
                     INSTANCE =
-                        AppExecutors(
-                            Executors.newSingleThreadExecutor(),
-                            MainThreadExecutor()
-                        )
+                        AppExecutors(Executors.newSingleThreadExecutor(), MainThreadExecutor())
                 }
             }
             return INSTANCE!!

@@ -2,6 +2,7 @@ package `in`.curioustools.architectures.db
 
 import `in`.curioustools.architectures.models.Pokemon
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 
 @Dao
@@ -18,7 +19,12 @@ interface PokemonAccessDao{
 
 
     @Query("SELECT * FROM table_pokemon_full")
-    fun getAllPokemonsLive():LiveData<List<Pokemon>>
+    fun getAllPokemonsPageListFactory(): DataSource.Factory<Int,Pokemon>
+
+
+
+//    @Query("SELECT * FROM table_pokemon_full")
+//    fun getAllPokemonsLive():LiveData<List<Pokemon>>
 
     /*
     //might be useless

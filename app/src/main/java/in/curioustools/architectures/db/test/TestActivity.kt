@@ -5,11 +5,13 @@ import `in`.curioustools.architectures.models.Pokemon
 import `in`.curioustools.architectures.network.PokemonNetworkRequestService
 import `in`.curioustools.architectures.utils.Logito
 import `in`.curioustools.architectures.utils.interceptors.InterceptorFactory
+import `in`.curioustools.architectures.utils.threading.AppExecutors
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.paging.toLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +24,7 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        repo = PokemonRepo(this)
+        repo = PokemonRepo(this, AppExecutors.getSingletonInstance())
         service = PokemonNetworkRequestService(InterceptorFactory.getAll(this))
 
 
@@ -38,24 +40,24 @@ class TestActivity : AppCompatActivity() {
     }
 
     private fun startLiveDataTest() {
-        val livePokemons: LiveData<List<Pokemon>>? = repo.getAllPokemonsLive()
-        val observer: Observer<List<Pokemon?>?> = Observer { list ->
-
-            if (list != null) {
-                logito.e( "startLiveDataTest: list size= ${list.size}")
-                val size = min(6, list.size)
-
-                for (i in 0 until size) {
-                    logito.e( "startLiveDataTest: ${list[i]}")
-                }
-            } else {
-                logito.e( "startLiveDataTest: livedata recieved a null list")
-            }
-
-        }
-
-        livePokemons?.observe(this, observer)
-
+//        val livePokemons: LiveData<List<Pokemon>>? =...
+//        val observer: Observer<List<Pokemon?>?> = Observer { list ->
+//
+//            if (list != null) {
+//                logito.e( "startLiveDataTest: list size= ${list.size}")
+//                val size = min(6, list.size)
+//
+//                for (i in 0 until size) {
+//                    logito.e( "startLiveDataTest: ${list[i]}")
+//                }
+//            } else {
+//                logito.e( "startLiveDataTest: livedata recieved a null list")
+//            }
+//
+//        }
+//
+//        livePokemons?.observe(this, observer)
+//
     }
 
     private fun startNetworkRequest() {

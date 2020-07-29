@@ -5,6 +5,7 @@ package `in`.curioustools.architectures.models
 import `in`.curioustools.architectures.db.DbConstants
 import `in`.curioustools.architectures.utils.room.UniqueStringGenerator
 import android.os.Parcelable
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import androidx.room.ColumnInfo
@@ -135,6 +136,24 @@ data class Pokemon constructor(
     companion object {
         fun getDefaultPokemon()= Pokemon()
 
+        val DIFF_UTIL= object : DiffUtil.ItemCallback<Pokemon>() {
+            override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+                return  oldItem.name == newItem.name
+                /*
+                   Note: only applicable for this app, because name would always be different
+                   unchanged here. ususally use primary key(oldItem.key == newItem.key )
+                 */
+            }
+
+            override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+                return oldItem.name == newItem.name
+                /*
+                   Note: only applicable for this app, because key would usually be different on
+                   every network request unchanged here. ususally use complete object
+                   (oldItem == newItem)
+                 */
+            }
+        }
         const val maxHp = 300
         const val maxAttack = 300
         const val maxDefense = 300

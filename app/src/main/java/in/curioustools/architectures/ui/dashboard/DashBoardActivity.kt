@@ -26,7 +26,7 @@ class DashBoardActivity : AppCompatActivity() {
         //initUi
         adp = DashboardAdapter(listOf(), object : MyRvItemClickListener<Pokemon> {
             override fun onItemClick(clickedItem: Pokemon) {
-                DetailsActivity.open(this@DashBoardActivity, clickedItem)
+                DetailsActivity.open(this@DashBoardActivity, clickedItem.indexID)
             }
         })
 

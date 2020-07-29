@@ -8,53 +8,37 @@ import `in`.curioustools.architectures.utils.threading.AppExecutors
 import android.content.Context
 import androidx.lifecycle.LiveData
 
-class PokemonRepo (ctx:Context){
+class PokemonRepo(ctx: Context) {
     private val dao = PokeDb.getInstance(ctx.applicationContext).notesDbAccessDao
     private val executors: AppExecutors = AppExecutors.getSingletonInstance()
-    private val logito = Logito(TAG= "PokemonRepo>>")
+    private val logito = Logito(TAG = "PokemonRepo>>")
 
-     fun insertPokeMons(vararg pokemon: Pokemon){
-        if(dao==null){
-            logito.e("dao is null")
-            return
-        }
+    fun insertPokeMons(vararg pokemon: Pokemon) {
+
         executors.singleThreadExecutorService.execute { dao.insertPokemon(*pokemon) }
     }
 
-     fun deleteAllPokemons(){
-        if(dao==null){
-            logito.e("dao is null")
-            return
-        }
+    fun deleteAllPokemons() {
+
         executors.singleThreadExecutorService.execute { dao.deleteAllPokemons() }
     }
 
-      fun getPokemonByIndex(index:String):Pokemon?{
-        if(dao==null) return  null
-
+    fun getPokemonByIndex(index: String): Pokemon {
         return executors.singleThreadExecutorService.submit {
-            dao.getPokemonByID(index) }.get() as Pokemon?
+            dao.getPokemonByID(index)
+        }.get() as Pokemon
 
     }
 
-     fun getAllPokemonsLive(): LiveData<List<Pokemon>>?{
-        if(dao==null){
-            logito.e("dao is null")
-            return null
-        }
+    fun getAllPokemonsLive(): LiveData<List<Pokemon>>? {
+
         return dao.getAllPokemonsLive()
     }
 
     fun refreshCache(recievedPokemons: List<Pokemon>) {
-
-        if(dao==null){
-            logito.e("dao is null")
-            return
-        }
         executors.singleThreadExecutorService.execute {
             dao.deleteAllPokemons()
             dao.insertPokemon(*recievedPokemons.toTypedArray())
-
         }
 
 
@@ -62,86 +46,6 @@ class PokemonRepo (ctx:Context){
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*

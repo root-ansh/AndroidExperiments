@@ -37,7 +37,7 @@ android {
 @Database(entities = [Pokemon::class],version = 1, exportSchema = true)
 abstract class PokeDb:RoomDatabase(){
 
-    abstract val notesDbAccessDao: PokemonAccessDao?
+    abstract val notesDbAccessDao: PokemonAccessDao
 
     companion object {
         private var INSTANCE: PokeDb? = null

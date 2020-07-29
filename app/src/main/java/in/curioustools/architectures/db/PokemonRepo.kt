@@ -7,6 +7,7 @@ import `in`.curioustools.architectures.utils.Logito
 import `in`.curioustools.architectures.utils.threading.AppExecutors
 import android.content.Context
 import androidx.lifecycle.LiveData
+import java.util.concurrent.Callable
 
 class PokemonRepo(ctx: Context) {
     private val dao = PokeDb.getInstance(ctx.applicationContext).notesDbAccessDao
@@ -23,10 +24,11 @@ class PokemonRepo(ctx: Context) {
         executors.singleThreadExecutorService.execute { dao.deleteAllPokemons() }
     }
 
-    fun getPokemonByIndex(index: String): Pokemon {
-        return executors.singleThreadExecutorService.submit {
-            dao.getPokemonByID(index)
-        }.get() as Pokemon
+    fun getPokemonByIndex(index: String): Pokemon? {
+        return executors
+            .singleThreadExecutorService
+            .submit(Callable { dao.getPokemonByID(index) })
+            .get()
 
     }
 

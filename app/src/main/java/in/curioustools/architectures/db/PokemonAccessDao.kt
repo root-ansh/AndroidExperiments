@@ -13,8 +13,8 @@ interface PokemonAccessDao{
     @Query("DELETE FROM table_pokemon_full")
     fun deleteAllPokemons()
 
-    @Query("SELECT * FROM table_pokemon_full WHERE index_id = :indexID")
-    fun getPokemonByID(indexID:String):Pokemon
+    @Query("SELECT * FROM table_pokemon_full WHERE index_id LIKE '%' || :indexID || '%'")
+    fun getPokemonByID(indexID:String):Pokemon?
 
 
     @Query("SELECT * FROM table_pokemon_full")

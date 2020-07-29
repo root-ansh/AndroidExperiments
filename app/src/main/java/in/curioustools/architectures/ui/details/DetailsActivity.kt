@@ -1,8 +1,10 @@
 package `in`.curioustools.architectures.ui.details
 
 import `in`.curioustools.architectures.R
+import `in`.curioustools.architectures.db.PokemonRepo
 import `in`.curioustools.architectures.models.Pokemon
 import `in`.curioustools.architectures.utils.GlideAnimatedLoader
+import `in`.curioustools.architectures.utils.Logito
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -31,7 +33,15 @@ class DetailsActivity : AppCompatActivity() {
 
 
     private fun initData() {
-        pokemon = intent?.getParcelableExtra(KEY_DATA) ?: Pokemon.getDefaultPokemon()
+        val logito =  Logito()
+        val id:String = intent?.getStringExtra(KEY_DATA)?:"error"
+        logito.e("id = $id ")
+
+        val repo = PokemonRepo(this)
+
+        pokemon = repo.getPokemonByIndex(id)?: Pokemon.getDefaultPokemon()
+
+        logito.e("Pokemon = \n $pokemon")
     }
 
     @SuppressLint("SetTextI18n")
@@ -59,9 +69,9 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_DATA = "data"
-        fun open(context: Context, data: Pokemon) {
+        fun open(context: Context, indexID: String) {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra(KEY_DATA, data)
+            intent.putExtra(KEY_DATA, indexID)
             context.startActivity(intent)
         }
     }

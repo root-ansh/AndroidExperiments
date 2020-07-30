@@ -6,24 +6,30 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import `in`.curioustools.architectures.R
+import `in`.curioustools.architectures.databinding.LayoutPokemonlistEachrowBinding
 import `in`.curioustools.architectures.models.Pokemon
 import `in`.curioustools.architectures.utils.GlideAnimatedLoader
 import `in`.curioustools.architectures.utils.Logito
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
 
 
 class DashboardAdapter(
-    private var dataList: List<Pokemon> = listOf(),
-    private var itemClickListener: MyRvItemClickListener<Pokemon>
+    private var itemClickListener: MyRvItemClickListener<Pokemon>,
+    private val inflater: LayoutInflater
+
 ) : RecyclerView.Adapter<DashboardHolder>() {
 
 
+    private var dataList: List<Pokemon> = listOf()
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_pokemonlist_eachrow, parent, false)
-        return DashboardHolder(view)
+        val binding: LayoutPokemonlistEachrowBinding =
+            DataBindingUtil.inflate(inflater, R.layout.layout_pokemonlist_eachrow, parent, false)
+        return DashboardHolder(binding)
     }
 
 
@@ -38,27 +44,24 @@ class DashboardAdapter(
         notifyItemRangeChanged(0, dataList.size)
     }
 
-
-
-
 }
 
 
-class DashboardHolder(v: View) : RecyclerView.ViewHolder(v) {
-    private val tvName: TextView? = v.findViewById(R.id.eachrow_tv_pokemon_name)
-    private val ivImage: ImageView? = v.findViewById(R.id.eachrow_iv_pokemon)
+class DashboardHolder(val binding: LayoutPokemonlistEachrowBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
     fun bind(data: Pokemon, listener: MyRvItemClickListener<Pokemon>) {
 
-        tvName?.text = data.name
-        GlideAnimatedLoader.loadImage(ivImage, data.imageUrl)
-
-        itemView.setOnClickListener {
-            Logito().e("item clicked")
-            listener.onItemClick(data)
-        }
-
-
+        binding.listenerInstance = listener
+        binding.pokemonObj = data
+        binding.executePendingBindings()
+        /*
+           https://medium.com/androiddevelopers/android-data-binding-recyclerview-db7c40d9f0e4
+           This forces the bindings to run immediately instead of delaying them until the next
+            frame. RecyclerView will measure the view immediately after onBindViewHolder.
+            If the wrong data is in the views because the binding is waiting until the next frame,
+            it will be measured improperly. thus The executePendingBindings() is important!
+         */
     }
 
 }

@@ -3,15 +3,16 @@
 package `in`.curioustools.architectures.ui.dashboard
 
 import `in`.curioustools.architectures.R
+import `in`.curioustools.architectures.databinding.ActivityDashBoardBinding
 import `in`.curioustools.architectures.models.Pokemon
 import `in`.curioustools.architectures.ui.details.DetailsActivity
 import `in`.curioustools.architectures.utils.Logito
 import `in`.curioustools.architectures.utils.ScreenSizeAdjustableGridManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_dash_board.*
 
 class DashBoardActivity : AppCompatActivity() {
 
@@ -19,34 +20,49 @@ class DashBoardActivity : AppCompatActivity() {
     private val logito = Logito(TAG = "DashboardAct>>")
     private lateinit var viewModel: DashboardVM
 
+    lateinit var bindedUi: ActivityDashBoardBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dash_board)
+        bindedUi = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
 
-        //initUi
-        adp = DashboardAdapter(listOf(), object : MyRvItemClickListener<Pokemon> {
+        //init ui
+        val itemClickListener = object : MyRvItemClickListener<Pokemon> {
             override fun onItemClick(clickedItem: Pokemon) {
                 DetailsActivity.open(this@DashBoardActivity, clickedItem.indexID)
             }
-        })
+        }
+        adp = DashboardAdapter( itemClickListener, layoutInflater)
 
-
+        //initViewModel
         initViewModel()
-
 
     }
 
     override fun onStart() {
         super.onStart()
 
-        //attach adapter and layout manager
-        rv_pokemon?.layoutManager = ScreenSizeAdjustableGridManager.get(this, 200)
-        rv_pokemon?.adapter = adp
+        //bind th ui with xml
+        /*
+          We could have gone the same way as directly passing the layout manager and adapter to
+          recycler as that  we did in for textviews in  details activity, ie by passing both of them
+          as data variables, but that's not that simple becauuse although recyler view xml allows us
+          to pass layout manager in xml, it doesn't allow passing adapter directly. so first option
+          is to go onto make a custom binding adapter( lik we did  for glide image loader), but
+          that's not a very helpful approach since we would be doing the same task as
+          my 2nd approach(given below) but via a long route .
 
+          Or we could just access the recycler view via bindedUiObj and directly attach the
+          layout manager/adapter.
+         */
+        val layoutManager = ScreenSizeAdjustableGridManager.get(this, 200)
+        bindedUi.rvPokemon.adapter = adp
+        bindedUi.rvPokemon.layoutManager =layoutManager
+
+
+        //refreshDataList
         startListeningToChanges()
         refreshDataList()
     }
-
 
     private fun initViewModel() {
         viewModel = ViewModelProvider
@@ -75,5 +91,4 @@ class DashBoardActivity : AppCompatActivity() {
 
 
 }
-
 

@@ -1,42 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@drawable/bg_rect_curve_8_solid_light_fffef2"
-    android:padding="8dp"
-    android:layout_margin="4dp"
 
-    android:gravity="center"
-    tools:ignore="ContentDescription"
-    >
+<layout xmlns:binding="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/eachrow_iv_pokemon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="fitXY"
-        android:padding="4dp"
-        android:background="@drawable/bg_circle_white_fff"
-        tools:src="@android:drawable/ic_menu_camera"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:id="@+id/eachrow_tv_pokemon_name"
-        android:layout_width="150dp"
+    <data>
+
+        <variable
+            name="pokemonObj"
+            type="in.curioustools.architectures.models.Pokemon" />
+        <variable
+            name="listenerInstance"
+            type="in.curioustools.architectures.ui.dashboard.MyRvItemClickListener&lt;in.curioustools.architectures.models.Pokemon&gt;" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        tools:text="Pikachu"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="16sp"
-        android:layout_margin="8dp"
+        android:layout_margin="4dp"
+        android:background="@drawable/bg_rect_curve_8_solid_light_fffef2"
         android:gravity="center"
-        tools:background="#eee"
-        />
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{()->  listenerInstance.onItemClick(pokemonObj)}"
+        tools:ignore="ContentDescription">
+
+        <ImageView
+            android:id="@+id/eachrow_iv_pokemon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_circle_white_fff"
+            android:padding="4dp"
+            android:scaleType="fitXY"
+            binding:url="@{pokemonObj.imageUrl}"
+
+            tools:src="@android:drawable/ic_menu_camera" />
 
 
+        <TextView
+            android:id="@+id/eachrow_tv_pokemon_name"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="@{pokemonObj.name}"
+
+            tools:background="#eee"
+            tools:text="Pikachu" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>
+
+
+    <!-- WRONG-->
+    <!--  this is wrong, the binding url is binded to an adapter  only works with image view and  -->

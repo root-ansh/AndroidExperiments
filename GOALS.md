@@ -9,7 +9,8 @@
 
 - Threading: executors, coroutines, rxjava
 
-- Navigation+ some ui features( motion/constraint layout, recycler view animations, lottie , shimmer , data binding)
+- Navigation+ some ui features( motion/constraint/cordinator layout, recycler view customizations/animations,
+ lottie , shimmer, material libs , data binding)
 
 -clean+ feature modules
 

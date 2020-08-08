@@ -31,12 +31,14 @@ class PokemonNetworkRequestService(interceptors: List<Interceptor> = listOf()) {
     init {
 
          val okHttpClientBuilder = OkHttpClient().newBuilder()
+         interceptors.forEach { okHttpClientBuilder.addInterceptor(it) }
+
+        
          val retrofitBuilder = Retrofit.Builder()
          val responseConverter = GsonConverterFactory.create(Gson().newBuilder().create())
 
          val okHttpClient = okHttpClientBuilder.build()
 
-        interceptors.forEach { okHttpClientBuilder.addInterceptor(it) }
         val retrofitInstance= retrofitBuilder
                 .baseUrl(FULL_URL)
                 .client(okHttpClient)
